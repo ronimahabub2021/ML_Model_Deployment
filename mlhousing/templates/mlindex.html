@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>House Price Prediction</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>🏠 House Price Predictor</h1>
+            <p>Enter the details below to predict the price of your dream house!</p>
+        </header>
+
+        <div class="form-container">
+            <form action="{{ url_for('predict') }}" method="POST">
+                <label for="bedrooms">Number of Bedrooms:</label>
+                <input type="number" id="bedrooms" name="bedrooms" placeholder="e.g., 3" required>
+
+                <label for="bathrooms">Number of Bathrooms:</label>
+                <input type="number" id="bathrooms" name="bathrooms" placeholder="e.g., 2" required>
+
+                <label for="floors">Number of Floors:</label>
+                <input type="number" id="floors" name="floors" placeholder="e.g., 1" required>
+
+                <label for="yr_built">Year Built:</label>
+                <input type="number" id="yr_built" name="yr_built" placeholder="e.g., 2000" required>
+
+                <button type="submit" class="btn">Predict Price</button>
+            </form>
+        </div>
+
+        {% if prediction %}
+        <div class="result">
+            <h2>Estimated Price:</h2>
+            <p>{{ prediction }}</p>
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
